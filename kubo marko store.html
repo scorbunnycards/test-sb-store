@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scorbunny cards | Premium Pokémon Card Art</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader"><div class="loader-ring"></div></div>
+
+<!-- LIVING BACKGROUND -->
+<div class="ambient">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+    <div class="blob blob4"></div>
+    <div class="blob blob5"></div>
+</div>
+<canvas id="motes"></canvas>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="#" class="nav-left" id="navHome2">
+        <!-- ⚠️ EDIT THIS: replace with your own logo file -->
+        <img src="assets/images/Scorbunny cards logo.jpg" class="nav-logo" alt="Logo">
+        <span class="nav-title">Scorbunny cards</span>
+    </a>
+    <div class="nav-right">
+        <div class="nav-links">
+            <a href="#" id="navHome" class="active">Home</a>
+            <a href="#" id="navExtensions">Shop</a>
+            <a href="#" id="navGallery">Gallery</a>
+        </div>
+        <button class="basket-btn" id="basketBtn" aria-label="Open basket">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="basket-count initially-hidden" id="basketCount">0</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#" id="navHomeMobile" class="active">Home</a>
+    <a href="#" id="navExtMobile">Shop</a>
+    <a href="#" id="navGalleryMobile">Gallery</a>
+</div>
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+<!-- ████████████ HOME PAGE ████████████ -->
+<div class="ui-wrapper" id="homePage">
+
+    <section class="hero">
+        <div class="text-side">
+            <div class="hero-label">✦ Custom Pokémon Art</div>
+            <h1 class="hero-title">We Turn Cards<br>Into <em>Living Art</em></h1>
+            <p class="hero-desc">Every extension is precisely crafted with use of photoshop and AI, one card at a time. Pick your size, choose your frame and case, tell us which card it's for, and we'll bring it to life.</p>
+
+            <div class="stats-row">
+                <div class="stat"><span class="stat-num" id="soldCounter"></span><span class="stat-lbl">Sold Orders</span></div>
+                <div class="stat"><span class="stat-num">100+</span><span class="stat-lbl">Designs</span></div>
+            </div>
+
+            <div class="btn-row">
+                <a href="#" class="btn btn-primary" id="heroShopBtn">Shop Extensions →</a>
+                <a href="https://www.instagram.com/scorbunny_cards" target="_blank" class="btn btn-ghost"><svg class="icon icon-instagram" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>Instagram</a>
+            </div>
+        </div>
+
+        <div class="hero-card-zone">
+            <div class="card-scene" id="cardScene">
+                <div class="float-box fb-tl"><div class="float-box-label">Quality</div><div class="float-box-value">Premium</div><div class="float-box-sub">precise art</div></div>
+                <div class="float-box fb-tr"><div class="float-box-label">Ship</div><div class="float-box-value">Fast</div><div class="float-box-sub">Tracked delivery</div></div>
+                <div class="float-box fb-bl"><div class="float-box-label">Type</div><div class="float-box-value">Extension</div><div class="float-box-sub">Custom background</div></div>
+                <div class="float-box fb-br"><div class="float-box-label">Rating</div><div class="float-box-value">★ 5.0</div><div class="float-box-sub">Loved</div></div>
+                <div class="card-3d" id="heroCard3d">
+                    <img src="assets/images/main.jpg" class="card-img" alt="Featured Card" id="heroCardImg">
+                    <div class="card-foil" id="cardFoil"></div>
+                    <div class="card-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features reveal" id="featuresSection">
+        <div class="features-header">
+            <div class="eyebrow">✦ Why Choose Us</div>
+            <h2>Why Our <em>Extensions</em> Stand Out</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5 4 4"></path><path d="M13 7 3 17v4h4L17 11"></path><path d="m17 3 4 4"></path><path d="m3 21 3-3"></path></svg></div><h3>Precise Art</h3><p>Every extension is uniquely designed to blend seamlessly with the original card art, turning it into a full scene.</p></div>
+            <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="10" x2="14" y1="2" y2="2"></line><line x1="12" x2="12" y1="14" y2="10"></line><circle cx="12" cy="13" r="8"></circle><path d="M12 2v2"></path></svg></div><h3>Fast Turnaround</h3><p>New designs drop regularly. Request your favorite Pokémon and see it transformed within days, not weeks.</p></div>
+            <div class="feat-card"><div class="feat-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12l4 6-10 13L2 9Z"></path><path d="m12 22 4-13-4-6-4 6 4 13Z"></path><path d="M2 9h20"></path></svg></div><h3>Premium Print</h3><p>Printed on high-quality material that matches the feel of original TCG cards. Collector-grade quality.</p></div>
+        </div>
+    </section>
+
+    <footer class="site-footer reveal">
+        <div class="footer-left"><p>Browse the full collection</p><h2>Let's make your card into art</h2></div>
+        <div class="footer-right"><div class="sold-label">Sold Orders</div><div class="sold-number" id="soldCounter2"></div></div>
+    </footer>
+</div>
+
+<!-- ████████████ SHOP PAGE ████████████ -->
+<section class="page-wrapper" id="extensionsPage">
+    <div class="page-heading">
+        <div><div class="badge">Shadow Box Art</div><h2>Card <em>Extensions</em></h2></div>
+        <div class="search-wrap"><span class="search-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></span><input type="text" id="extSearchInput" placeholder="Search extensions..."></div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="cards-grid" id="extensionsGrid"></div>
+</section>
+
+<!-- ████████████ GALLERY PAGE ████████████ -->
+<section class="page-wrapper" id="galleryPage">
+    <div class="page-heading">
+        <div><div class="badge">Behind The Art</div><h2>Our <em>Gallery</em></h2></div>
+    </div>
+    <div class="divider"></div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- ████████████ INFO / LEGAL PAGE ████████████ -->
+<section class="page-wrapper" id="infoPage">
+    <div class="page-heading">
+        <div><div class="badge">Good To Know</div><h2>Store <em>Information</em></h2></div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="info-subnav" id="infoSubnav">
+        <button type="button" data-target="about-us">About Us</button>
+        <button type="button" data-target="contact">Contact</button>
+        <button type="button" data-target="shipping-delivery">Shipping &amp; Delivery</button>
+        <button type="button" data-target="returns-withdrawal">Returns / Withdrawal</button>
+        <button type="button" data-target="privacy-policy">Privacy Policy</button>
+        <button type="button" data-target="terms-conditions">Terms &amp; Conditions</button>
+    </div>
+
+    <!-- ABOUT US -->
+    <div class="info-section" id="about-us">
+        <h3>About Us</h3>
+        <div class="info-prose">
+            <p><strong>Scorbunny Cards</strong> started as a small, hands-on passion project: taking the Pokémon cards we love and turning them into full display pieces, one custom extension at a time. What began as a personal hobby has grown into a small independent shop serving collectors who want their favorite cards to feel like art, not just cardboard in a sleeve.</p>
+            <p>Every extension is individually designed around the card it's made for — matching colors, lighting, and mood so the printed background feels like a natural continuation of the artwork. Pieces are made to order in small batches, checked by hand, and packed carefully before they leave us.</p>
+            <p>We're a small operation, which means every order gets personal attention — but it also means production takes real time. Thank you for supporting an independent, collector-run shop.</p>
+            <div class="info-note">Scorbunny Cards is an independent, fan-run shop and is not affiliated with, endorsed by, or sponsored by Nintendo, Game Freak, Creatures Inc., or The Pokémon Company. Pokémon and all related names are trademarks of their respective owners. Our products are unofficial, made-to-order fan accessories intended for personal collector use.</div>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="info-section" id="contact">
+        <h3>Contact</h3>
+        <div class="info-prose">
+            <p>Have a question about an order, a custom request, or anything else? We're happy to help — email is the fastest way to reach us.</p>
+            <div class="info-contact-grid">
+                <div class="info-contact-item">
+                    <div class="ci-label">Email</div>
+                    <div class="ci-value"><a href="mailto:scorbunnycards@gmail.com">scorbunnycards@gmail.com</a></div>
+                </div>
+                <div class="info-contact-item">
+                    <div class="ci-label">Instagram</div>
+                    <div class="ci-value"><a href="https://www.instagram.com/scorbunny_cards" target="_blank" rel="noopener">@scorbunny_cards</a></div>
+                </div>
+                <div class="info-contact-item">
+                    <div class="ci-label">Response Time</div>
+                    <div class="ci-value">Within 1–2 days</div>
+                </div>
+            </div>
+            <p class="contact-order-note">When reaching out about an existing order, please include your order number (found in your confirmation email) so we can find your details quickly.</p>
+        </div>
+    </div>
+
+    <!-- SHIPPING & DELIVERY -->
+    <div class="info-section" id="shipping-delivery">
+        <h3>Shipping &amp; Delivery</h3>
+        <div class="info-prose">
+            <p>Because every extension is made to order, please allow a short production window before your order ships. Once your piece is ready, it's carefully packaged to prevent damage in transit and shipped with a tracked delivery service.</p>
+            <h4>Production Time</h4>
+            <p>Most orders are produced and ready to ship within a few business days of payment being confirmed. Larger or more detailed pieces (such as multi-card A4 extensions) may take a little longer — if there's any delay we'll let you know by email.</p>
+            <h4>Preparation &amp; Dispatch Days</h4>
+            <p>Orders are prepared over the weekend and dispatched Monday through Friday. Orders placed later in the week may ship on the following business day — this is normal and doesn't mean anything has gone wrong with your order.</p>
+            <h4>Shipping Time &amp; Cost</h4>
+            <p>A flat shipping fee is shown at checkout before you confirm your order. Delivery times vary depending on your location and the courier's own transit times, and a tracking number is provided once your order is on its way.</p>
+            <h4>Where We Ship</h4>
+            <p>At this time, we only ship to the following countries:</p>
+            <ul>
+                <li>Slovakia</li>
+                <li>Czechia (Czech Republic)</li>
+                <li>Romania</li>
+                <li>Hungary</li>
+            </ul>
+            <p>We're unable to accept or ship orders outside of these four countries at the moment. If your shipping address is outside this area, please don't place an order — we won't be able to fulfil it.</p>
+        </div>
+    </div>
+
+    <!-- RETURNS / WITHDRAWAL POLICY -->
+    <div class="info-section" id="returns-withdrawal">
+        <h3>Returns / Withdrawal Policy</h3>
+        <div class="info-updated">Please read before ordering</div>
+        <div class="info-prose">
+            <p>We want you to be happy with your extension. Because every piece is custom-made to your chosen card, frame color, case, and specifications, please read the following carefully before placing your order.</p>
+            <h4>Custom / Personalized Orders</h4>
+            <p>Under EU consumer protection law, the standard 14-day right of withdrawal does not apply to goods made to the consumer's specifications or clearly personalized (Directive 2011/83/EU, Art. 16(c)). As every extension we make is produced specifically for your chosen card and options, orders generally cannot be cancelled or returned simply for a change of mind once production has begun.</p>
+            <p>If you need to cancel or change an order, contact us as soon as possible — if production hasn't started yet, we'll do our best to accommodate you.</p>
+            <h4>Damaged, Defective, or Incorrect Items</h4>
+            <p>If your order arrives damaged, defective, or different from what you ordered, please contact us within 14 days of delivery at <a href="mailto:scorbunnycards@gmail.com">scorbunnycards@gmail.com</a> with your order number and clear photos of the issue. We'll arrange a replacement, repair, or refund as appropriate, free of charge.</p>
+            <h4>Lost in Transit</h4>
+            <p>If tracking shows your order as lost or significantly delayed beyond the expected delivery window, let us know and we'll investigate with the courier and find a fair resolution.</p>
+            <div class="info-note">This section is provided for general information and reflects our standard policy — it does not override any mandatory statutory rights you may have under the consumer protection laws of your country of residence.</div>
+        </div>
+    </div>
+
+    <!-- PRIVACY POLICY -->
+    <div class="info-section" id="privacy-policy">
+        <h3>Privacy Policy</h3>
+        <div class="info-updated">Last updated: September 2026</div>
+        <div class="info-prose">
+            <p>This Privacy Policy explains what personal information we collect when you use this website and place an order, and how we use it.</p>
+            <h4>Information We Collect</h4>
+            <ul>
+                <li>Contact and order details you provide at checkout: full name, email address, phone number, shipping address, and any notes you leave us.</li>
+                <li>Basic basket data (items and quantities) stored locally in your browser so your basket is remembered between visits.</li>
+                <li>Any information you send us directly by email, such as when contacting us with a question.</li>
+            </ul>
+            <h4>How We Use It</h4>
+            <ul>
+                <li>To process, produce, and ship your order.</li>
+                <li>To communicate with you about your order, including payment and delivery updates.</li>
+                <li>To respond to questions or requests you send us.</li>
+            </ul>
+            <p>We do not sell your personal information to third parties, and we do not use it for advertising or marketing purposes without your consent.</p>
+            <h4>Third-Party Services</h4>
+            <p>Order and checkout form submissions are securely processed through a third-party form delivery service, which transmits your order details to our email inbox. Payment is handled separately via direct bank transfer using the details we provide after your order is placed — we do not collect or store any card or banking credentials on this site.</p>
+            <h4>Data Retention</h4>
+            <p>We keep order information for as long as reasonably necessary to fulfil your order, handle any warranty or return requests, and meet our legal and accounting obligations.</p>
+            <h4>Your Rights</h4>
+            <p>Depending on where you live, you may have the right to access, correct, delete, or request a copy of the personal information we hold about you. To exercise any of these rights, contact us at <a href="mailto:scorbunnycards@gmail.com">scorbunnycards@gmail.com</a>.</p>
+            <h4>Cookies &amp; Local Storage</h4>
+            <p>This site uses your browser's local storage to remember the contents of your basket. This data stays on your own device and is not used for tracking or analytics.</p>
+        </div>
+    </div>
+
+    <!-- TERMS & CONDITIONS -->
+    <div class="info-section" id="terms-conditions">
+        <h3>Terms &amp; Conditions</h3>
+        <div class="info-updated">Last updated: September 2026</div>
+        <div class="info-prose">
+            <p>By placing an order on this website, you agree to the following terms.</p>
+            <h4>Products</h4>
+            <p>All extensions are made to order based on the size, frame color, case type, and card you specify at checkout. Colors and finishes may vary slightly from what's shown on screen due to differences in display calibration and printing.</p>
+            <h4>Orders &amp; Payment</h4>
+            <p>Prices are displayed in Euros (€) and include the item cost; shipping is calculated and shown separately at checkout. Orders are currently paid by direct bank transfer (IBAN) using the reference number provided after checkout. Production begins once payment has been confirmed.</p>
+            <h4>Order Acceptance</h4>
+            <p>Submitting an order through this site is an offer to purchase, which we may confirm or, in rare cases, decline or adjust (for example, if a requested option is unavailable) — in which case we'll contact you before proceeding.</p>
+            <h4>Intellectual Property &amp; Trademark Disclaimer</h4>
+            <p>Scorbunny Cards is an independent, unofficial fan project and is not affiliated with, sponsored by, or endorsed by Nintendo, Game Freak, Creatures Inc., or The Pokémon Company. All Pokémon names, images, and related trademarks belong to their respective owners and are used here for descriptive, non-commercial fan purposes. We do not sell official Pokémon Trading Card Game products — we sell custom display accessories designed to complement cards you already own.</p>
+            <h4>Limitation of Liability</h4>
+            <p>We are not liable for indirect or consequential loss arising from the use of our products. Our liability for any order is limited to the amount paid for that order.</p>
+            <h4>Changes to These Terms</h4>
+            <p>We may update these Terms &amp; Conditions from time to time. The version posted on this page at the time of your order applies to that order.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ████████████ LIGHTBOX (gallery photo viewer) ████████████ -->
+<div class="lightbox-overlay" id="lightboxOverlay">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+    <div class="lightbox-content">
+        <img id="lightboxImg" src="" alt="">
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+</div>
+
+<!-- ████████████ BASKET DRAWER ████████████ -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="drawer" id="basketDrawer" aria-label="Basket">
+
+    <!-- STEP 1: CART -->
+    <div id="cartStep">
+        <div class="drawer-head"><h3>Your Basket</h3><button class="drawer-close" id="drawerClose1">✕</button></div>
+        <div class="drawer-body" id="basketList"></div>
+        <div class="drawer-foot" id="cartFoot">
+            <div class="discount-box" id="discountBox">
+                <div class="discount-input-row">
+                    <input type="text" id="discountInput" placeholder="Discount code" autocomplete="off" spellcheck="false">
+                    <button type="button" class="discount-apply-btn" id="discountApplyBtn" data-mode="apply">Apply</button>
+                </div>
+                <p class="discount-msg" id="discountMsg"></p>
+            </div>
+            <div class="subtotal-row"><span>Subtotal</span><span id="subtotalValue">€0.00</span></div>
+            <div class="subtotal-row shipping-row"><span>Shipping</span><span id="shippingValue">€0.00</span></div>
+            <div class="subtotal-row discount-row initially-hidden" id="discountRow"><span>Discount</span><span id="discountValue">−€0.00</span></div>
+            <div class="subtotal-row total-row"><span>Total</span><span id="totalValue">€0.00</span></div>
+            <p class="subtotal-note">Flat-rate shipping of €3.60 applies to every order. We currently ship to Slovakia, Czechia, Romania, and Hungary only. Final price is confirmed by us before payment — especially for custom extensions.</p>
+            <button class="btn btn-primary" id="checkoutBtn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- STEP 2: CHECKOUT FORM -->
+    <div id="checkoutStep" class="initially-hidden">
+        <div class="drawer-head"><h3>Checkout</h3><button class="drawer-close" id="drawerClose2">✕</button></div>
+        <div class="drawer-body">
+            <button class="back-link" id="backToCart">← Back to basket</button>
+            <form class="checkout-form" id="checkoutForm">
+                <div class="field"><label for="custName">Full name</label><input type="text" id="custName" name="Name" required></div>
+                <div class="field"><label for="custEmail">Email</label><input type="email" id="custEmail" name="Email" required></div>
+                <div class="field"><label for="custPhone">Phone number</label><div class="phone-input-row"><select id="countryCode" name="Country Code" aria-label="Country calling code"><option value="+421" selected>SK +421</option><option value="+36">HU +36</option><option value="+420">CZ +420</option></select><input type="tel" id="custPhone" name="Phone" required inputmode="tel" autocomplete="tel-national"></div></div>
+                <div class="field"><label for="custAddress">Shipping address</label><textarea id="custAddress" name="Shipping Address" required placeholder="Street, city, postal code, country"></textarea></div>
+                <p class="ship-countries-note">We currently ship to <strong>Slovakia, Czechia, Romania, and Hungary</strong> only. Please make sure your address is within one of these countries.</p>
+                <p class="ship-countries-note">Orders are prepared over the weekend and dispatched Monday–Friday. If you order later in the week, your order may ship on the next business day.</p>
+                <div class="field"><label for="custNotes">Notes (optional)</label><textarea id="custNotes" name="Notes" placeholder="Anything else we should know?"></textarea></div>
+                <label class="agree-row" for="custAgree">
+                    <input type="checkbox" id="custAgree" name="Agreed to Terms" required>
+                    <span>I have read and agree to the <a href="#" id="agreeTermsLink">Terms &amp; Conditions</a> and store policies (Privacy, Shipping &amp; Delivery, Returns / Withdrawal).</span>
+                </label>
+                <label class="agree-row" for="custAgreePay">
+                    <input type="checkbox" id="custAgreePay" name="Agreed to Pay" required>
+                    <span>I understand that, just like on any other store, placing this order means I'm required to pay for it (by IBAN bank transfer) for it to be processed.</span>
+                </label>
+                <button type="submit" class="btn btn-primary" id="placeOrderBtn">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- STEP 3: PAYMENT (IBAN) INSTRUCTIONS -->
+    <div id="paymentStep" class="initially-hidden">
+        <div class="drawer-head"><h3>&nbsp;</h3><button class="drawer-close" id="drawerClose3">✕</button></div>
+        <div class="drawer-body">
+            <div class="pay-panel">
+                <div class="pay-intro">
+                    <div class="success-check"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+                    <h4>Order received!</h4>
+                    <p>Please pay by bank transfer (IBAN) using the details below. We'll start preparing your order as soon as payment arrives.</p>
+                </div>
+
+                <div class="pay-order-highlight">
+                    <div class="pay-row-label">Order number — use as payment reference</div>
+                    <div class="pay-order-number" id="payOrderNumber">—</div>
+                </div>
+
+                <div class="pay-card">
+                    <div class="pay-row">
+                        <div><div class="pay-row-label">Amount to pay</div><div class="pay-row-value" id="payAmount">€0.00</div></div>
+                    </div>
+                    <div class="pay-row">
+                        <div><div class="pay-row-label">Subtotal</div><div class="pay-row-value" id="paySubtotal">€0.00</div></div>
+                        <div><div class="pay-row-label">Shipping</div><div class="pay-row-value" id="payShipping">€3.60</div></div>
+                    </div>
+                    <div class="pay-row" id="payDiscountRow" class="initially-hidden">
+                        <div><div class="pay-row-label">Discount</div><div class="pay-row-value" id="payDiscount">−€0.00</div></div>
+                    </div>
+                    <div class="pay-row">
+                        <div><div class="pay-row-label">Account holder</div><div class="pay-row-value" id="payAccountName">—</div></div>
+                        <button type="button" class="pay-copy-btn" data-copy-target="payAccountName">Copy</button>
+                    </div>
+                    <div class="pay-row">
+                        <div><div class="pay-row-label">IBAN</div><div class="pay-row-value" id="payIban">—</div></div>
+                        <button type="button" class="pay-copy-btn" data-copy-target="payIban">Copy</button>
+                    </div>
+                </div>
+
+                <p class="pay-note"><strong>Important:</strong> enter order number <strong id="payNoteOrderNumber">—</strong> in the payment note/reference field so we can match your transfer to your order.</p>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<!-- ████████████ PRODUCT QUICK-VIEW MODAL ████████████ -->
+<div class="modal-overlay" id="productOverlay">
+    <div class="modal product-modal">
+        <div class="modal-head">
+            <div></div>
+            <button class="drawer-close" id="productClose">✕</button>
+        </div>
+        <div class="product-modal-grid">
+            <div class="product-modal-img">
+                <div class="product-modal-carousel-track" id="productCarouselTrack"></div>
+                <div class="product-modal-dots" id="productCarouselDots"></div>
+                <button type="button" class="product-modal-arrow prev" id="productCarouselPrev" aria-label="Previous photo">‹</button>
+                <button type="button" class="product-modal-arrow next" id="productCarouselNext" aria-label="Next photo">›</button>
+            </div>
+            <div>
+                <div class="product-modal-name" id="productName"></div>
+                <div class="product-modal-price" id="productPrice"></div>
+                <p class="product-modal-desc" id="productDesc"></p>
+                <form id="productForm">
+                    <div class="field product-option-field">
+                        <label>Frame Color</label>
+                        <div class="option-pills" id="frameColorPills"></div>
+                    </div>
+                    <div class="field product-option-field">
+                        <label>Card Case</label>
+                        <div class="option-pills" id="caseTypePills"></div>
+                    </div>
+                    <div class="field product-option-field initially-hidden" id="cardCountField">
+                        <label>Number of Cards</label>
+                        <div class="option-pills" id="cardCountPills"></div>
+                    </div>
+                    <div class="field product-name-field">
+                        <label for="productCardName">Which card is this for?</label>
+                        <input type="text" id="productCardName" placeholder="Name of the card and number of card" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add to Basket</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ████████████ GLOBAL SITE FOOTER ████████████ -->
+<footer class="global-footer">
+    <div class="global-footer-grid">
+        <div class="global-footer-col">
+            <div class="gf-brand">
+                <img src="assets/images/Scorbunny cards logo.jpg" alt="Scorbunny Cards logo">
+                <span>Scorbunny cards</span>
+            </div>
+            <p>Custom Pokémon card extensions, crafted one card at a time. An independent, collector-run shop — not affiliated with Nintendo, Game Freak, or The Pokémon Company.</p>
+        </div>
+        <div class="global-footer-col">
+            <h4>Shop</h4>
+            <a href="#" class="gf-link" data-nav="home">Home</a>
+            <a href="#" class="gf-link" data-nav="ext">Extensions</a>
+            <a href="#" class="gf-link" data-nav="gallery">Gallery</a>
+        </div>
+        <div class="global-footer-col">
+            <h4>Company</h4>
+            <a href="#" class="gf-link" data-nav="info" data-target="about-us">About Us</a>
+            <a href="#" class="gf-link" data-nav="info" data-target="contact">Contact</a>
+        </div>
+        <div class="global-footer-col">
+            <h4>Policies</h4>
+            <a href="#" class="gf-link" data-nav="info" data-target="shipping-delivery">Shipping &amp; Delivery</a>
+            <a href="#" class="gf-link" data-nav="info" data-target="returns-withdrawal">Returns / Withdrawal</a>
+            <a href="#" class="gf-link" data-nav="info" data-target="privacy-policy">Privacy Policy</a>
+            <a href="#" class="gf-link" data-nav="info" data-target="terms-conditions">Terms &amp; Conditions</a>
+        </div>
+    </div>
+    <div class="global-footer-bottom">
+        <span>© 2026 Scorbunny Cards. All rights reserved.</span>
+        <span><a href="mailto:scorbunnycards@gmail.com">scorbunnycards@gmail.com</a></span>
+    </div>
+</footer>
+
+<!-- ████████████ SCRIPTS ████████████ -->
+<script src="js/main.js"></script>
+</body>
+</html>
